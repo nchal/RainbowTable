@@ -29,7 +29,7 @@ public class Element implements Comparable<Element> {
 	}
 
 	public String save() {
-		return getDebut() + ";" + getFin();
+		return getDebut() + ";" + getFin() + "\n";
 	}
 
 }

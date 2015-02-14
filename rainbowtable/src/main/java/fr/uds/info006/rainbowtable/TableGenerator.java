@@ -1,8 +1,9 @@
 package fr.uds.info006.rainbowtable;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URISyntaxException;
 
@@ -10,12 +11,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Main {
+/**
+ * Classe qui génère le fichier avec la liste des index triés</br> Il faut lancé
+ * cette classe une fois (ça prend mass temps normalement)</br>Pour avoir plus
+ * de chance de réussite, il faut jouer avec les variables M et T mais ça prend
+ * plus de temps.
+ */
+public class TableGenerator {
 
 	public static void main(String[] args) {
 
 		int m = 2000;
 		int t = 1000;
+
 		List<Element> elements = new ArrayList<Element>();
 
 		System.out.println("Creation graphs....");
@@ -41,19 +49,13 @@ public class Main {
 
 		System.out.println("Save File");
 
-		StringBuilder builder = new StringBuilder();
-
-		try (PrintWriter writer = new PrintWriter(new File(Thread
-				.currentThread().getContextClassLoader()
-				.getResource("table.txt").toURI()))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(
+				new File(Thread.currentThread().getContextClassLoader()
+						.getResource("table.txt").toURI())))) {
 
 			for (Element element : elements) {
-				writer.println(element.save());
-				builder.append(element.save() + "\n");
+				writer.append(element.save());
 			}
-
-			writer.print(builder);
-			System.out.println(builder);
 
 		} catch (IOException | URISyntaxException e) {
 
