@@ -18,12 +18,12 @@ import java.util.List;
  * plus de temps.
  */
 public class TableGenerator {
+	static int m = 2000;
+	static int t = 1000;
 
 	public static void main(String[] args) {
 
-		int m = 2000;
-		int t = 1000;
-
+		
 		List<Element> elements = new ArrayList<Element>();
 
 		System.out.println("Creation graphs....");
@@ -55,11 +55,14 @@ public class TableGenerator {
 
 			for (Element element : elements) {
 				writer.append(element.save());
-			}
+				}
+			
+			writer.close();
 
 		} catch (IOException | URISyntaxException e) {
 
 			e.printStackTrace();
 		}
+		
 	}
 }

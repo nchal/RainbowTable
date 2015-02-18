@@ -9,7 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class CryptoUtils {
 
-	public static final String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+	public static final String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	public static final BigInteger alphabetLength = new BigInteger(
 			String.valueOf(alphabet.length()));
 	public static final int size = 5;

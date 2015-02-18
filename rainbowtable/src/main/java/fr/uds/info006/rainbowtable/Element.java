@@ -7,6 +7,17 @@ public class Element implements Comparable<Element> {
 	private BigInteger debut;
 	private BigInteger fin;
 
+	
+	public Element(String debut, String fin) {
+		super();
+		this.debut = new BigInteger(debut);
+		this.fin = new BigInteger(fin);
+	}
+
+	public Element() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public BigInteger getDebut() {
 		return debut;
 	}
