@@ -15,6 +15,9 @@ public class CryptoUtils {
 	public static final int size = 5;
 	public static final BigInteger powValue = alphabetLength.pow(size);
 
+	public static final int M_PARAM = 100;
+	public static final int T_PARAM = 5000;
+
 	public static String i2c(BigInteger indice) {
 
 		StringBuilder builder = new StringBuilder();

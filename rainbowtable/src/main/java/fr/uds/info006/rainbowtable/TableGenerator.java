@@ -18,24 +18,21 @@ import java.util.List;
  * plus de temps.
  */
 public class TableGenerator {
-	static int m = 2000;
-	static int t = 1000;
 
 	public static void main(String[] args) {
 
-		
 		List<Element> elements = new ArrayList<Element>();
 
 		System.out.println("Creation graphs....");
 
-		for (int i = 0; i < m; i++) {
+		for (int i = 0; i < CryptoUtils.M_PARAM; i++) {
 
 			Element e = new Element();
 			BigInteger random = CryptoUtils.genRand();
 			e.setDebut(random);
 			e.setFin(random);
 
-			for (int j = 0; j < t; j++) {
+			for (int j = 0; j < CryptoUtils.T_PARAM; j++) {
 
 				e.setFin(CryptoUtils.i2i(e.getFin()));
 			}
@@ -55,14 +52,14 @@ public class TableGenerator {
 
 			for (Element element : elements) {
 				writer.append(element.save());
-				}
-			
+			}
+
 			writer.close();
 
 		} catch (IOException | URISyntaxException e) {
 
 			e.printStackTrace();
 		}
-		
+
 	}
 }
