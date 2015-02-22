@@ -34,7 +34,7 @@ public class TableGenerator {
 
 			for (int j = 0; j < CryptoUtils.T_PARAM; j++) {
 
-				e.setFin(CryptoUtils.i2i(e.getFin()));
+				e.setFin(CryptoUtils.i2i(e.getFin(),BigInteger.valueOf(j)));
 			}
 
 			elements.add(e);

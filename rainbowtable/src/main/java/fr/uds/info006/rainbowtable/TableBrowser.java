@@ -20,6 +20,7 @@ public class TableBrowser {
 
 	static int p = 0;
 	static int q = 0;
+	static String finalclair ="";
 
 	public static void main(String[] args) {
 
@@ -41,10 +42,8 @@ public class TableBrowser {
 			e.printStackTrace();
 		}
 
-		System.out.println(builder);
-
 		BigInteger y = new BigInteger("16274152309920345780");
-		cracker(table, y);
+		System.out.println(cracker(table, y));
 	}
 
 	private static String cracker(ArrayList<Element> table, BigInteger y) {
@@ -58,11 +57,12 @@ public class TableBrowser {
 
 			for (int k = t + 1; k <= CryptoUtils.T_PARAM - 1; ++k) {
 				BigInteger bk = BigInteger.valueOf(k);
-				indice = CryptoUtils.i2i(bk);
+				indice = CryptoUtils.i2i(indice,bk);
 			}
 			if (search(table, indice)) {
-				for (int m = p; m >= q; ++m) {
+				for (int m = p; m < q; ++m) {
 					if (CheckAlert(y, table, m)) {
+						clair = finalclair;
 						return clair;
 					}
 				}
@@ -81,6 +81,7 @@ public class TableBrowser {
 			indiceCourant = (debut + fin) / 2;
 			if (table.get(indiceCourant).getFin().compareTo(indice) == 0) {
 				trouve = true;
+				break;
 			} else {
 				if (table.get(indiceCourant).getFin().compareTo(indice) == -1) {
 					fin = indiceCourant - 1;
@@ -92,15 +93,14 @@ public class TableBrowser {
 		}
 		if (trouve) {
 
-			while (table.get(debut).getFin().compareTo(indice) == 0) {
+			while (debut<0 && table.get(debut).getFin().compareTo(indice) == 0) {
 				debut--;
 			}
-			while (table.get(fin).getFin().compareTo(indice) == 0) {
+			while (fin< table.size() &&table.get(fin).getFin().compareTo(indice) == 0) {
 				fin++;
 			}
 			p = debut;
 			q = fin;
-
 			return true;
 		} else {
 			return false;
@@ -109,7 +109,21 @@ public class TableBrowser {
 
 	private static boolean CheckAlert(BigInteger y, ArrayList<Element> table,
 			int indice) {
-		// TODO
+		
+		BigInteger hint = table.get(indice).getDebut();
+		
+		for(int i = 1; i<=CryptoUtils.T_PARAM; ++i){
+			finalclair = CryptoUtils.i2c(hint);
+			if(y.equals(CryptoUtils.c2h(finalclair))){
+				System.out.println("TROUVE2");
+				return true;
+			}
+			hint = CryptoUtils.i2i(BigInteger.valueOf(i), hint);	
+		}
+		finalclair = CryptoUtils.i2c(hint);
+		if(y==CryptoUtils.c2h(finalclair)){
+			return true;
+		}
 		return false;
 	}
 

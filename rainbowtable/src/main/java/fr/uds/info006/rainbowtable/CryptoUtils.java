@@ -9,14 +9,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class CryptoUtils {
 
-	public static final String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	public static final BigInteger alphabetLength = new BigInteger(
 			String.valueOf(alphabet.length()));
 	public static final int size = 5;
 	public static final BigInteger powValue = alphabetLength.pow(size);
 
-	public static final int M_PARAM = 100;
-	public static final int T_PARAM = 5000;
+	public static final int M_PARAM = 80000;
+	public static final int T_PARAM = 1000;
 
 	public static String i2c(BigInteger indice) {
 
@@ -44,9 +44,9 @@ public class CryptoUtils {
 		return hashDecale.mod(powValue);
 	}
 
-	public static BigInteger i2i(BigInteger indice) {
+	public static BigInteger i2i(BigInteger indice, BigInteger decalage) {
 
-		return h2i(c2h(i2c(indice)), new BigInteger("1"));
+		return h2i(c2h(i2c(indice)), decalage);
 	}
 
 	public static BigInteger genRand() {
